@@ -12,12 +12,14 @@
   /**
    * Apply .scrolled class to the body as the page is scrolled down
    */
-  function toggleScrolled() {
-    const selectBody = document.querySelector('body');
-    const selectHeader = document.querySelector('#header');
-    if (!selectHeader.classList.contains('scroll-up-sticky') && !selectHeader.classList.contains('sticky-top') && !selectHeader.classList.contains('fixed-top')) return;
-    window.scrollY > 100 ? selectBody.classList.add('scrolled') : selectBody.classList.remove('scrolled');
-  }
+function toggleScrolled() {
+  const header = document.querySelector('#header');
+  if (!header) return;
+  const sticky = header.classList.contains('scroll-up-sticky') || header.classList.contains('sticky-top') || header.classList.contains('fixed-top');
+  if (!sticky) return;
+  if (window.scrollY > 100) header.classList.add('scrolled');
+  else header.classList.remove('scrolled');
+}
 
   document.addEventListener('scroll', toggleScrolled);
   window.addEventListener('load', toggleScrolled);
